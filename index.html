@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人信息分数单</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+    }
+    select, button {
+        width: calc(100% - 22px); /* 22px is the default width of the scrollbar */
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #result {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    /* Media query for smaller screens */
+    @media only screen and (max-width: 600px) {
+        select, button {
+            font-size: 16px;
+        }
+    }
+
+    label, select {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>个人信息分数单</h1>
+
+    <form id="evaluationForm">
+        <div>
+            <label for="education">学历:</label>
+            <select id="education">
+                <option value="30">博士</option>
+                <option value="25">海龟硕</option>
+                <option value="20">国内硕</option>
+                <option value="15">本科</option>
+                <option value="10">大专</option>
+                <option value="5">小初高</option>
+            </select>
+        </div>
+        <div>
+            <label for="age">年龄:</label>
+            <select id="age">
+                <option value="10">小五岁</option>
+                <option value="9">小四岁</option>
+                <option value="8">小三岁</option>
+                <option value="3">同龄</option>
+                <option value="5">大两岁</option>
+                <option value="8">大三岁</option>
+            </select>
+        </div>
+        <div>
+            <label for="hometown">老家所在地:</label>
+            <select id="hometown">
+                <option value="10">你所在城市</option>
+                <option value="8">昆山 太仓 嘉善</option>
+                <option value="7">十八线</option>
+                <option value="3">苏州 无锡 杭州 绍兴 宁波</option>
+                <option value="1">武汉 成都 重庆 天津 青岛</option>
+            </select>
+        </div>
+        <div>
+            <label for="height">身高:</label>
+            <select id="height">
+                <option value="10">1.7 米</option>
+                <option value="9">1.68 米</option>
+                <option value="8">1.65 米</option>
+                <option value="5">1.63 米</option>
+                <option value="3">1.60 米</option>
+                <option value="1">1.55 米以下</option>
+            </select>
+        </div>
+        <div>
+            <label for="looks">长相:</label>
+            <select id="looks">
+                <option value="10">绝对漂亮</option>
+                <option value="9">10人中6人说漂亮</option>
+                <option value="8">5人</option>
+                <option value="5">3人</option>
+                <option value="1">都说一般</option>
+                <option value="">都不说话</option>
+            </select>
+        </div>
+        <div>
+            <label for="weight">体重(身高减110):</label>
+            <select id="weight">
+                <option value="10">+/- 5</option>
+                <option value="8">+/- 10</option>
+                <option value="5">+/- 15</option>
+                <option value="3">+/- 20</option>
+                <option value="1">+/- 25</option>
+            </select>
+        </div>
+        <div>
+            <label for="siblings">兄弟姐妹:</label>
+            <select id="siblings">
+                <option value="10">2位亲哥哥</option>
+                <option value="8">1位亲哥哥</option>
+                <option value="6">1位亲姐姐</option>
+                <option value="5">独生女</option>
+                <option value="3">1位亲妹妹</option>
+                <option value="1">1位亲弟弟</option>
+            </select>
+        </div>
+        <div>
+            <label for="parents">父母感情:</label>
+            <select id="parents">
+                <option value="10">父母恩爱</option>
+                <option value="8">父母意见一致</option>
+                <option value="6">父母离婚</option>
+                <option value="4">父母再婚</option>
+                <option value="1">父亲小小失踪</option>
+            </select>
+        </div>
+        <button type="button" onclick="calculateScore()">计算</button>
+    </form>
+
+    <p id="result"></p>
+</div>
+
+<script>
+function calculateScore() {
+    var education = parseInt(document.getElementById('education').value);
+    var age = parseInt(document.getElementById('age').value);
+    var hometown = parseInt(document.getElementById('hometown').value);
+    var height = parseInt(document.getElementById('height').value);
+    var looks = parseInt(document.getElementById('looks').value);
+    var weight = parseInt(document.getElementById('weight').value);
+    var siblings = parseInt(document.getElementById('siblings').value);
+    var parents = parseInt(document.getElementById('parents').value);
+
+    var totalScore = education + age + hometown + height + looks + weight + siblings + parents;
+
+    document.getElementById('result').innerHTML = "个人信息分数: " + totalScore;
+}
+</script>
+
+</body>
+</html>
